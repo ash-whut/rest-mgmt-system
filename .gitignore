@@ -1,2 +1,4 @@
 env
 __pycache__
+orders_placed.dat
+ratings.dat

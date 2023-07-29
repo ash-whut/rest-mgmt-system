@@ -18,7 +18,7 @@ class Order:
         print()
         displayMenu(self.items)
         print()
-        print("Total Cost: $", self.total_cost, space = "", end = "\n")
+        print("Total Cost: $", self.total_cost, end = "\n\n")
         
     def get_month(self) -> int:
         return self.timestamp.month
