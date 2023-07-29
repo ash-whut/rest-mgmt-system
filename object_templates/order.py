@@ -1,6 +1,5 @@
 from object_templates.menu_item import MenuItem
 from datetime import datetime
-from prettytable import PrettyTable
 from helpers.program_functions import displayMenu
 
 class Order:

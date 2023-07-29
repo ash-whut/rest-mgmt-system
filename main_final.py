@@ -41,7 +41,7 @@ while True:
                 if order.number_of_items != 0:
                     add_order(order)
 
-            elif dish not in menu.keys():
+            elif dish not in json.load(open("./records/sample_items.json", "r")):
                 print(f"${dish} is not available in our menu. Please make sure the item is:\n 1) In our menu\n 2) Matches the exact spelling as given in our menu (spelling is also case sensitive)")
 
             else:
