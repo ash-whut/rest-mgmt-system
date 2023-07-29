@@ -5,7 +5,7 @@ from object_templates.menu_item import MenuItem
 from helpers.sample_initializer import sample_initializer
 from helpers.program_functions import displayMenu
 from object_templates.order import Order
-from helpers.dat_handler import add_order, get_monthly_income, get_income_today
+from helpers.dat_handler import add_order, get_income_today
 
 while True:
     order = Order()
