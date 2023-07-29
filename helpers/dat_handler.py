@@ -4,20 +4,38 @@ import pickle
 from datetime import datetime
 
 def add_order(order) -> None:
-    with open("./records/orders_placed.dat", "wb+") as file:
-        currSize = os.path.getsize("./records/orders_placed.dat")
+    try:
+        with open("./records/orders_placed.dat", "rb+") as file:
+            currSize = os.path.getsize("./records/orders_placed.dat")
         
-        if (currSize == 0):
-            record = json.load(open("./records/orders_template.json", "r"))
-            record["orders"].append(order)
-            record["number_of_orders"] += 1
+            if (currSize == 0):
+                record = json.load(open("./records/orders_template.json", "r"))
+                record["orders"].append(order)
+                record["number_of_orders"] += 1
 
-        else:
-            record = pickle.load("./records/orders_placed.dat")
-            record["orders"].append(order)
-            record["number_of_orders"] += 1
+            else:
+                record = pickle.load(file)
+                record["orders"].append(order)
+                record["number_of_orders"] += 1
         
-        pickle.dump(record, file)
+        with open("./records/orders_placed.dat", "wb") as file:
+            pickle.dump(record, file)
+    
+    except FileNotFoundError:
+        with open("./records/orders_placed.dat", "wb") as file:
+            currSize = os.path.getsize("./records/orders_placed.dat")
+        
+            if (currSize == 0):
+                record = json.load(open("./records/orders_template.json", "r"))
+                record["orders"].append(order)
+                record["number_of_orders"] += 1
+
+            else:
+                record = pickle.load("./records/orders_placed.dat")
+                record["orders"].append(order)
+                record["number_of_orders"] += 1
+        
+            pickle.dump(record, file)
 
 def get_monthly_income(month: int) -> float:
     with open("./records/orders_placed.dat", "rb+") as file:
@@ -40,7 +58,7 @@ def get_monthly_income(month: int) -> float:
                 return total_monthly_income
             
 def get_income_today() -> float:
-    with open("./records/orders_placed.dat", "rb+") as file:
+    with open("./records/orders_placed.dat", "rb") as file:
         currSize = os.path.getsize("./records/orders_placed.dat")
         
         if (currSize == 0):
