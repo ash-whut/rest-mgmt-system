@@ -1,5 +1,5 @@
 import json
-from menu_item import menu_item
+from object_templates import menu_item
 
 def sample_initializer(path = "./records/sample_items.json") -> list:
     with open(path, "r") as read_content:
