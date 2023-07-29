@@ -1,4 +1,4 @@
-from menu_item import menu_item
+from object_templates.menu_item import MenuItem
 from datetime import datetime
 from prettytable import PrettyTable
 from helpers.program_functions import displayMenu
@@ -10,7 +10,7 @@ class Order:
         self.items = []
         self.timestamp = datetime.now()
 
-    def add_item(self, item: menu_item) -> None:
+    def add_item(self, item: MenuItem) -> None:
         self.number_of_items += 1
         self.total_cost += item.get_price()
         self.items.append(item)
